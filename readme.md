@@ -10,13 +10,19 @@ Start server
 ./target/debug/server
 ```
 
+Server response
+
 ```console
 binding to 127.0.0.1:9000
 ```
 
+Start client
+
 ```console
 ./target/debug/client
 ```
+
+Client response
 
 ```console
 Hello Allen!
