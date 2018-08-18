@@ -4,9 +4,12 @@ extern crate example;
 use thrift::protocol::{TCompactInputProtocol, TCompactOutputProtocol};
 use thrift::transport::{TFramedReadTransport, TFramedWriteTransport, TIoChannel, TTcpChannel};
 
+use std::time::{Duration, Instant};
+
 use example::{SimpleServiceSyncClient, TSimpleServiceSyncClient};
 
 fn main() {
+    let now = Instant::now();
     match run() {
         Ok(()) => println!("client ran successfully"),
         Err(e) => {
@@ -14,6 +17,7 @@ fn main() {
             std::process::exit(1);
         }
     }
+    println!("{:?}", now.elapsed());
 }
 
 fn run() -> thrift::Result<()> {
@@ -31,7 +35,7 @@ fn run() -> thrift::Result<()> {
 
     // make service calls
     let res = client.hello("Allen".to_owned())?;
-    println!("{}", res);
+    println!("{:?}", res);
 
     // done!
     Ok(())
